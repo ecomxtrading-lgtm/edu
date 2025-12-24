@@ -3700,6 +3700,11 @@ span {
   background: transparent;
 }
 
+/* Nice-select: placeholder option (value="") listede görünmesin */
+.nice-select.single-select .list .option.disabled[data-value=""] {
+  display: none;
+}
+
 .custom-container {
   max-width: 1680px;
 }
