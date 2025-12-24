@@ -46,26 +46,37 @@
     <title>Prime Skool</title>
     <!--<< Favcion >>-->
     <link rel="shortcut icon" href="assets/img/favicon.svg" />
+    <!-- DNS Prefetch & Preconnect -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <!-- Preload Critical Resources -->
     <link rel="preload" href="assets/css/bootstrap.min.css" as="style" />
     <link rel="preload" href="assets/css/main.css" as="style" />
     <link rel="preload" href="assets/js/jquery-3.7.1.min.js" as="script" />
+    <!-- Preload LCP Image -->
+    <link rel="preload" href="assets/img/hero/hero-image.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="assets/img/hero/hero-bg.jpg" as="image" fetchpriority="high" />
     <!--<< Bootstrap min.css >>-->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <!--<< All Min Css >>-->
-    <link rel="stylesheet" href="assets/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/all.min.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="assets/css/all.min.css" /></noscript>
     <!--<< Animate.css >>-->
-    <link rel="stylesheet" href="assets/css/animate.css" />
+    <link rel="stylesheet" href="assets/css/animate.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="assets/css/animate.css" /></noscript>
     <!--<< Icomoon.css >>-->
     <link rel="stylesheet" href="assets/css/icomoon.css" />
     <!--<< Magnific Popup.css >>-->
-    <link rel="stylesheet" href="assets/css/magnific-popup.css" />
+    <link rel="stylesheet" href="assets/css/magnific-popup.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="assets/css/magnific-popup.css" /></noscript>
     <!--<< MeanMenu.css >>-->
     <link rel="stylesheet" href="assets/css/meanmenu.css" />
     <!--<< Swiper Bundle.css >>-->
-    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="assets/css/swiper-bundle.min.css" /></noscript>
     <!--<< Nice Select.css >>-->
-    <link rel="stylesheet" href="assets/css/nice-select.css" />
+    <link rel="stylesheet" href="assets/css/nice-select.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="assets/css/nice-select.css" /></noscript>
     <!--<< Color.css >>-->
     <link rel="stylesheet" href="assets/css/color.css" />
     <!--<< Main.css >>-->
@@ -382,6 +393,9 @@
                 src="assets/img/hero/hero-image.png"
                 alt="img"
                 loading="eager"
+                fetchpriority="high"
+                width="800"
+                height="600"
               />
               <div class="video-icon">
                 <a
