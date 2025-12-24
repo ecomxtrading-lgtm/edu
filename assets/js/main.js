@@ -84,8 +84,7 @@ CSS TABLE OF CONTENTS
         });
 
         //>> Wow Animation Start <<//
-        // WOW.js disabled for CLS optimization
-        // new WOW().init();
+        new WOW().init();
 
         //>> Nice Select Start <<//
         $('select').niceSelect();

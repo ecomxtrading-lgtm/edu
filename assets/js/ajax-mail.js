@@ -18,7 +18,13 @@
         $.ajax({
             type: 'POST',
             url: $(form).attr('action'),
-            data: formData
+            data: formData,
+            timeout: 10000, // 10 saniye timeout
+            beforeSend: function() {
+                // Form gönderilirken mesaj alanını temizle
+                $(formMessages).removeClass('success error');
+                $(formMessages).text('Gönderiliyor...');
+            }
         })
         .done(function(response) {
             // Make sure that the formMessages div has the 'success' class.
@@ -29,18 +35,30 @@
             $(formMessages).text(response);
 
             // Clear the form.
-            $('#contact-form input, #contact-form textarea').val('');
+            $('#contact-form input, #contact-form textarea, #contact-form select').val('');
         })
-        .fail(function(data) {
+        .fail(function(xhr, status, error) {
             // Make sure that the formMessages div has the 'error' class.
             $(formMessages).removeClass('success');
             $(formMessages).addClass('error');
 
-            // Set the message text.
-            if (data.responseText !== '') {
-                $(formMessages).text(data.responseText);
+            // Set the message text based on error type.
+            if (status === 'timeout') {
+                $(formMessages).text('Bağlantı zaman aşımına uğradı. Lütfen tekrar deneyin.');
+            } else if (status === 'error') {
+                if (xhr.responseText && xhr.responseText !== '') {
+                    $(formMessages).text(xhr.responseText);
+                } else if (xhr.status === 0) {
+                    $(formMessages).text('Bağlantı hatası. İnternet bağlantınızı kontrol edin veya VPN kullanıyorsanız kapatıp tekrar deneyin.');
+                } else if (xhr.status === 404) {
+                    $(formMessages).text('Sunucu bulunamadı. Lütfen daha sonra tekrar deneyin.');
+                } else if (xhr.status >= 500) {
+                    $(formMessages).text('Sunucu hatası oluştu. Lütfen daha sonra tekrar deneyin.');
+                } else {
+                    $(formMessages).text('Bir hata oluştu ve mesajınız gönderilemedi. Lütfen tekrar deneyin.');
+                }
             } else {
-                $(formMessages).text('Oops! An error occurred and your message could not be sent.');
+                $(formMessages).text('Bir hata oluştu ve mesajınız gönderilemedi. Lütfen tekrar deneyin.');
             }
         });
     });
