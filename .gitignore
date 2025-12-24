@@ -1,0 +1,11 @@
+.vscode/
+
+# backup / scratch files
+*.bak
+*.bak-*
+*bak-after-undo*
+
+# accidental root image export (project already uses assets/img/about/about-bg.png)
+about-bg.png
+
+

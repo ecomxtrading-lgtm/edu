@@ -297,16 +297,28 @@ CSS TABLE OF CONTENTS
         }
 
         //>> Project Hover Js Start <<//
-        const getSlide = $('.main-box, .box').length - 1;
-        const slideCal = 100 / getSlide + '%';
+        $('.main-box').each(function () {
+            const $mainBox = $(this);
+            const $boxes = $mainBox.find('.box');
+            const mqUnder1400 = window.matchMedia ? window.matchMedia('(max-width: 1399px)') : null;
+            const isUnder1400 = () => (mqUnder1400 ? mqUnder1400.matches : false);
 
-        $('.box').css({
-            "width": slideCal
-        });
+            // 1400 altı: grid görünüm (kartlar açık) => hover ile active oynamasın
+            // 1400 üstü: mouse üstüne gelmedikçe hiçbir kart açık kalmasın
+            if (!isUnder1400()) {
+                $boxes.removeClass('active');
+            }
 
-        $('.box').hover(function() {
-            $('.box').removeClass('active');
-            $(this).addClass('active');
+            $boxes.on('mouseenter', function () {
+                if (isUnder1400()) return;
+                $boxes.removeClass('active');
+                $(this).addClass('active');
+            });
+
+            $mainBox.on('mouseleave', function () {
+                if (isUnder1400()) return;
+                $boxes.removeClass('active');
+            });
         });
 
         //>> Search Popup Start <<//
@@ -387,6 +399,8 @@ CSS TABLE OF CONTENTS
 
         // circle-progress
         $(".circle-bar").loading();
+
+        // (Horizontal Team Sections kaldırıldı - sectionlar artık normal dikey akışta)
        
 
     }); // End Document Ready Function
