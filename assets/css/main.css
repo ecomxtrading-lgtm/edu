@@ -2370,6 +2370,7 @@ span {
 
 .footer-widgets-wrapper {
   padding: 50px 0 80px;
+  
 }
 .footer-widgets-wrapper .single-footer-widget {
   margin-top: 30px;
@@ -2745,6 +2746,11 @@ span {
 }
 .header-main .main-menu ul li a:hover {
   color: var(--theme2) !important;
+}
+
+/* contact.html: header menü yazıları siyah olsun */
+.contact-page .header-main .main-menu ul li > a {
+  color: #000 !important;
 }
 .header-main .main-menu ul li .submenu {
   position: absolute;
